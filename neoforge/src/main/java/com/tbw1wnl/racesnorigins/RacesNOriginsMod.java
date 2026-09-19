@@ -19,6 +19,7 @@ public class RacesNOriginsMod {
     public RacesNOriginsMod(IEventBus eventBus) {
 
         NeoForgePlayerDataStore.register(eventBus);
+        NeoForgeItems.register(eventBus);
         CommonClass.init();
         eventBus.addListener(NeoForgeNetworking::register);
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) -> TraitCommands.register(event.getDispatcher()));

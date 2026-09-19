@@ -30,6 +30,10 @@ public final class FabricNetworking {
     }
 
     public static void sendTraitList(ServerPlayer player) {
-        ServerPlayNetworking.send(player, PayloadHandlers.buildTraitList(player));
+        sendTraitList(player, false);
+    }
+
+    public static void sendTraitList(ServerPlayer player, boolean forceReselect) {
+        ServerPlayNetworking.send(player, PayloadHandlers.buildTraitList(player, forceReselect));
     }
 }

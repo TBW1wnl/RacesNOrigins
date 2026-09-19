@@ -24,9 +24,18 @@ public final class PayloadHandlers {
     }
 
     public static ClientboundTraitListPayload buildTraitList(ServerPlayer player) {
+        return buildTraitList(player, false);
+    }
+
+    /**
+     * @param forceReselect if true, reports {@code hasChosen=false} regardless of the player's
+     *                      actual persisted state, so the client re-opens the picker (used by the
+     *                      re-selection item) without touching that persisted state itself.
+     */
+    public static ClientboundTraitListPayload buildTraitList(ServerPlayer player, boolean forceReselect) {
         List<TraitSummary> races = summaries(TraitRegistry.races());
         List<TraitSummary> classes = summaries(TraitRegistry.classes());
-        boolean hasChosen = Services.PLAYER_DATA.get(player).hasChosen();
+        boolean hasChosen = !forceReselect && Services.PLAYER_DATA.get(player).hasChosen();
         return new ClientboundTraitListPayload(races, classes, hasChosen);
     }
 

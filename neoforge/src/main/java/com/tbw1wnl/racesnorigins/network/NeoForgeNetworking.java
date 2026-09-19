@@ -27,6 +27,10 @@ public final class NeoForgeNetworking {
     }
 
     public static void sendTraitList(ServerPlayer player) {
-        PacketDistributor.sendToPlayer(player, PayloadHandlers.buildTraitList(player));
+        sendTraitList(player, false);
+    }
+
+    public static void sendTraitList(ServerPlayer player, boolean forceReselect) {
+        PacketDistributor.sendToPlayer(player, PayloadHandlers.buildTraitList(player, forceReselect));
     }
 }
