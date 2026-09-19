@@ -22,9 +22,9 @@ import java.util.function.Consumer;
 public class RaceClassSelectionScreen extends Screen {
 
     private static final int ROW_HEIGHT = 32;
-    private static final int ROW_SPACING = 4;
-    private static final int ROW_WIDTH = 280;
-    private static final int LIST_TOP = 50;
+    private static final int LIST_WIDTH = 300;
+    private static final int LIST_TOP = 32;
+    private static final int BOTTOM_BAR_HEIGHT = 56;
 
     private enum Step {
         RACE, CLASS
@@ -50,18 +50,20 @@ public class RaceClassSelectionScreen extends Screen {
     @Override
     protected void init() {
         List<TraitSummary> entries = step == Step.RACE ? races : classes;
-        int x = (this.width - ROW_WIDTH) / 2;
-        int y = LIST_TOP;
-        for (TraitSummary summary : entries) {
-            addRenderableWidget(new TraitEntryWidget(x, y, ROW_WIDTH, ROW_HEIGHT, summary,
-                    () -> summary.id().equals(currentSelection()), this::select));
-            y += ROW_HEIGHT + ROW_SPACING;
-        }
+        int listHeight = this.height - LIST_TOP - BOTTOM_BAR_HEIGHT;
+        TraitSelectionList list = new TraitSelectionList(this.minecraft, LIST_WIDTH, listHeight, LIST_TOP,
+                ROW_HEIGHT, entries, this::select);
+        // setX() alone wouldn't reposition entries already added by the constructor above (that
+        // repositioning is a private AbstractSelectionList method) - updateSizeAndPosition() calls
+        // it internally, so it must be used instead to actually recenter the rows, not just the
+        // list's own background/scrollbar.
+        list.updateSizeAndPosition(LIST_WIDTH, listHeight, (this.width - LIST_WIDTH) / 2, LIST_TOP);
+        addRenderableWidget(list);
 
         confirmButton = addRenderableWidget(Button.builder(
                         Component.literal(step == Step.RACE ? "Next" : "Confirm"),
                         button -> onConfirmPressed())
-                .bounds((this.width - 150) / 2, this.height - 50, 150, 20)
+                .bounds((this.width - 150) / 2, this.height - 40, 150, 20)
                 .build());
         confirmButton.active = currentSelection() != null;
     }
