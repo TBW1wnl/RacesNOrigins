@@ -1,0 +1,9 @@
+{
+  "name": "Siren",
+  "description": "Breathes freely underwater, but suffocates after too long on dry land.",
+  "icon": "minecraft:trident",
+  "modifiers": [
+    { "type": "racesnorigins:water_breathing" },
+    { "type": "racesnorigins:amphibious", "land_grace_ticks": 200 }
+  ]
+}

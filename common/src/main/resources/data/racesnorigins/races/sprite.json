@@ -1,0 +1,10 @@
+{
+  "name": "Sprite",
+  "description": "Small, quick, and at home underwater.",
+  "icon": "minecraft:feather",
+  "modifiers": [
+    { "type": "racesnorigins:scale", "value": 0.5 },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:movement_speed", "amount": 0.05, "operation": "add_value" },
+    { "type": "racesnorigins:water_breathing" }
+  ]
+}

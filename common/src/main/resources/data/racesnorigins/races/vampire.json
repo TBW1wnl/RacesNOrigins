@@ -1,0 +1,9 @@
+{
+  "name": "Vampire",
+  "description": "Sees in the dark, burns in the sun.",
+  "icon": "minecraft:redstone",
+  "modifiers": [
+    { "type": "racesnorigins:sun_sensitivity", "action": "burn" },
+    { "type": "racesnorigins:permanent_effect", "effect": "minecraft:night_vision" }
+  ]
+}

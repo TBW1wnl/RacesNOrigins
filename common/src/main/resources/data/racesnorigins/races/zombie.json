@@ -1,0 +1,11 @@
+{
+  "name": "Zombie",
+  "description": "Undead flesh that burns in daylight, but no longer feared by its own kind.",
+  "icon": "minecraft:zombie_head",
+  "modifiers": [
+    { "type": "racesnorigins:sun_sensitivity", "action": "burn" },
+    { "type": "racesnorigins:hostile_mob_neutrality", "mobs": ["minecraft:zombie", "minecraft:husk", "minecraft:drowned", "minecraft:zombie_villager", "minecraft:skeleton", "minecraft:stray", "minecraft:phantom"] },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:max_health", "amount": 4.0, "operation": "add_value" },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:movement_speed", "amount": -0.03, "operation": "add_value" }
+  ]
+}

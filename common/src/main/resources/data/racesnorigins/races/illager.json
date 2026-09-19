@@ -1,0 +1,10 @@
+{
+  "name": "Illager",
+  "description": "A raider unwelcome by golems and rival warbands alike.",
+  "icon": "minecraft:crossbow",
+  "modifiers": [
+    { "type": "racesnorigins:hostile_mob_neutrality", "mobs": ["minecraft:pillager", "minecraft:vindicator", "minecraft:evoker", "minecraft:illusioner", "minecraft:ravager", "minecraft:vex"] },
+    { "type": "racesnorigins:hostile_to_golems" },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:attack_damage", "amount": 2.0, "operation": "add_value" }
+  ]
+}

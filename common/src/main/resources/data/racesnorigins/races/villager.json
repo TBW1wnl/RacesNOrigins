@@ -1,0 +1,9 @@
+{
+  "name": "Villager",
+  "description": "Trusted by every village, but no warrior.",
+  "icon": "minecraft:emerald",
+  "modifiers": [
+    { "type": "racesnorigins:permanent_effect", "effect": "minecraft:hero_of_the_village", "amplifier": 0 },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:attack_damage", "amount": -1.0, "operation": "add_value" }
+  ]
+}
