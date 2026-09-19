@@ -6,7 +6,8 @@
   "mixins": [
     "MixinEntityFireImmune",
     "MixinLivingEntityEffectImmunity",
-    "MixinLivingEntityGlide"
+    "MixinLivingEntityGlide",
+    "MixinLivingEntityAmphibious"
   ],
   "client": [
     "MixinMinecraft"
