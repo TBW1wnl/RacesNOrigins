@@ -9,6 +9,7 @@ import com.tbw1wnl.racesnorigins.modifier.types.FireImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.PermanentEffectModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.ScaleModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.SpawnInNetherModifierTrait;
+import com.tbw1wnl.racesnorigins.modifier.types.SunSensitivityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.WaterBreathingModifierTrait;
 import net.minecraft.resources.Identifier;
 
@@ -36,6 +37,7 @@ public final class ModifierRegistry {
         register(SpawnInNetherModifierTrait.TYPE, SpawnInNetherModifierTrait.CODEC);
         register(PermanentEffectModifierTrait.TYPE, PermanentEffectModifierTrait.CODEC);
         register(EffectImmunityModifierTrait.TYPE, EffectImmunityModifierTrait.CODEC);
+        register(SunSensitivityModifierTrait.TYPE, SunSensitivityModifierTrait.CODEC);
     }
 
     public static void register(Identifier id, MapCodec<? extends TraitModifier> codec) {
