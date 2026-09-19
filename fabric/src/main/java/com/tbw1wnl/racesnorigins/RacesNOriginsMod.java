@@ -5,9 +5,11 @@ import com.tbw1wnl.racesnorigins.item.ModItems;
 import com.tbw1wnl.racesnorigins.network.FabricNetworking;
 import com.tbw1wnl.racesnorigins.platform.Services;
 import com.tbw1wnl.racesnorigins.player.TraitApplier;
+import com.tbw1wnl.racesnorigins.player.TraitTicker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -29,5 +31,6 @@ public class RacesNOriginsMod implements ModInitializer {
             FabricNetworking.sendTraitList(player);
         });
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> TraitApplier.reapplyAll(newPlayer));
+        ServerTickEvents.END_SERVER_TICK.register(server -> server.getPlayerList().getPlayers().forEach(TraitTicker::tick));
     }
 }

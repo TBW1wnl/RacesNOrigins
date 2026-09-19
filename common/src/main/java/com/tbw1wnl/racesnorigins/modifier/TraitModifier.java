@@ -33,4 +33,13 @@ public interface TraitModifier {
     default boolean isOneShot() {
         return false;
     }
+
+    /**
+     * Called every server tick for every online player who currently has this modifier, via
+     * {@code TraitTicker}. No-op by default; only modifiers whose effect depends on an ongoing
+     * condition (e.g. "is this player standing in direct sunlight right now") need to override it.
+     * Kept cheap: implementations should avoid expensive per-tick work.
+     */
+    default void tick(ServerPlayer player, Identifier instanceId) {
+    }
 }

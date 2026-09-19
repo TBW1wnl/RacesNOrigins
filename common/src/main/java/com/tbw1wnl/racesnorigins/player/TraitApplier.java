@@ -88,7 +88,7 @@ public final class TraitApplier {
         return "race".equals(slot) ? TraitRegistry.getRace(id) : TraitRegistry.getClassDefinition(id);
     }
 
-    private static Identifier instanceId(String slot, Identifier definitionId, int index) {
+    static Identifier instanceId(String slot, Identifier definitionId, int index) {
         return Constants.id(slot + "/" + definitionId.getNamespace() + "/" + definitionId.getPath() + "/mod_" + index);
     }
 }

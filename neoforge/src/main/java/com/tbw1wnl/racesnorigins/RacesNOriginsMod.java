@@ -5,12 +5,14 @@ import com.tbw1wnl.racesnorigins.network.NeoForgeNetworking;
 import com.tbw1wnl.racesnorigins.platform.NeoForgePlayerDataStore;
 import com.tbw1wnl.racesnorigins.platform.Services;
 import com.tbw1wnl.racesnorigins.player.TraitApplier;
+import com.tbw1wnl.racesnorigins.player.TraitTicker;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 @Mod(Constants.MOD_ID)
@@ -37,5 +39,7 @@ public class RacesNOriginsMod {
         });
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerRespawnEvent event) ->
                 TraitApplier.reapplyAll((ServerPlayer) event.getEntity()));
+        NeoForge.EVENT_BUS.addListener((ServerTickEvent.Post event) ->
+                event.getServer().getPlayerList().getPlayers().forEach(TraitTicker::tick));
     }
 }
