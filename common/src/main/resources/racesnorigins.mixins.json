@@ -10,7 +10,9 @@
     "MixinLivingEntityAmphibious",
     "MixinLivingEntityDiet",
     "MixinFoodPropertiesOnConsume",
-    "MixinLivingEntityHostileNeutrality"
+    "MixinLivingEntityHostileNeutrality",
+    "MixinLivingEntityHostileToGolems",
+    "MixinIronGolemHostility"
   ],
   "client": [
     "MixinMinecraft"

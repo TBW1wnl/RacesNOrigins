@@ -1,0 +1,8 @@
+{
+  "name": "Raider",
+  "description": "Iron golems see you as a threat on sight.",
+  "icon": "minecraft:crossbow",
+  "modifiers": [
+    { "type": "racesnorigins:hostile_to_golems" }
+  ]
+}
