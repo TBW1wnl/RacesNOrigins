@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "com.tbw1wnl.racesnorigins.RacesNOriginsMod"
+        ],
+        "client": [
+            "com.tbw1wnl.racesnorigins.RacesNOriginsClientMod"
         ]
     },
     "mixins": [
