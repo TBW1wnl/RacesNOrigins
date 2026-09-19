@@ -1,0 +1,9 @@
+{
+  "name": "Wolfkin",
+  "description": "A born predator - only meat is truly nourishing.",
+  "icon": "minecraft:bone",
+  "modifiers": [
+    { "type": "racesnorigins:diet", "restriction": "carnivore" },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:attack_damage", "amount": 1.0, "operation": "add_value" }
+  ]
+}

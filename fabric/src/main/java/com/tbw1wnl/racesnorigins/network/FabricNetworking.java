@@ -1,11 +1,14 @@
 package com.tbw1wnl.racesnorigins.network;
 
 import com.tbw1wnl.racesnorigins.client.RaceClassSelectionScreen;
+import com.tbw1wnl.racesnorigins.modifier.DietHolder;
 import com.tbw1wnl.racesnorigins.modifier.GlideHolder;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.level.ServerPlayer;
+
+import java.util.Optional;
 
 public final class FabricNetworking {
 
@@ -16,6 +19,7 @@ public final class FabricNetworking {
         PayloadTypeRegistry.clientboundPlay().register(ClientboundTraitListPayload.TYPE, ClientboundTraitListPayload.STREAM_CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ServerboundSelectTraitsPayload.TYPE, ServerboundSelectTraitsPayload.STREAM_CODEC);
         PayloadTypeRegistry.clientboundPlay().register(ClientboundSyncGlideFlagPayload.TYPE, ClientboundSyncGlideFlagPayload.STREAM_CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(ClientboundSyncDietPayload.TYPE, ClientboundSyncDietPayload.STREAM_CODEC);
 
         ServerPlayNetworking.registerGlobalReceiver(ServerboundSelectTraitsPayload.TYPE, (payload, context) ->
                 context.server().execute(() -> PayloadHandlers.handleSelect(context.player(), payload)));
@@ -31,6 +35,8 @@ public final class FabricNetworking {
                 }));
         ClientPlayNetworking.registerGlobalReceiver(ClientboundSyncGlideFlagPayload.TYPE, (payload, context) ->
                 context.client().execute(() -> ((GlideHolder) context.player()).racesnorigins$setCanGlide(payload.canGlide())));
+        ClientPlayNetworking.registerGlobalReceiver(ClientboundSyncDietPayload.TYPE, (payload, context) ->
+                context.client().execute(() -> ((DietHolder) context.player()).racesnorigins$setDietRestriction(payload.restriction())));
     }
 
     public static void sendTraitList(ServerPlayer player) {
@@ -43,5 +49,9 @@ public final class FabricNetworking {
 
     public static void syncCanGlide(ServerPlayer player, boolean canGlide) {
         ServerPlayNetworking.send(player, new ClientboundSyncGlideFlagPayload(canGlide));
+    }
+
+    public static void syncDiet(ServerPlayer player, Optional<String> restriction) {
+        ServerPlayNetworking.send(player, new ClientboundSyncDietPayload(restriction));
     }
 }

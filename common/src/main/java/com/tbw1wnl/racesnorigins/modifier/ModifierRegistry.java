@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.tbw1wnl.racesnorigins.Constants;
 import com.tbw1wnl.racesnorigins.modifier.types.AmphibiousModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.AttributeModifierTrait;
+import com.tbw1wnl.racesnorigins.modifier.types.DietModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.EffectImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.FireImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.FlightModifierTrait;
@@ -42,6 +43,7 @@ public final class ModifierRegistry {
         register(SunSensitivityModifierTrait.TYPE, SunSensitivityModifierTrait.CODEC);
         register(FlightModifierTrait.TYPE, FlightModifierTrait.CODEC);
         register(AmphibiousModifierTrait.TYPE, AmphibiousModifierTrait.CODEC);
+        register(DietModifierTrait.TYPE, DietModifierTrait.CODEC);
     }
 
     public static void register(Identifier id, MapCodec<? extends TraitModifier> codec) {

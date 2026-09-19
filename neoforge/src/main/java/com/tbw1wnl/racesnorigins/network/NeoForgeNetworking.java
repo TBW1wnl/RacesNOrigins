@@ -1,6 +1,7 @@
 package com.tbw1wnl.racesnorigins.network;
 
 import com.tbw1wnl.racesnorigins.client.RaceClassSelectionScreen;
+import com.tbw1wnl.racesnorigins.modifier.DietHolder;
 import com.tbw1wnl.racesnorigins.modifier.GlideHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
@@ -8,6 +9,8 @@ import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+
+import java.util.Optional;
 
 public final class NeoForgeNetworking {
 
@@ -28,6 +31,9 @@ public final class NeoForgeNetworking {
         registrar.playToClient(ClientboundSyncGlideFlagPayload.TYPE, ClientboundSyncGlideFlagPayload.STREAM_CODEC,
                 (payload, context) -> context.enqueueWork(() ->
                         ((GlideHolder) context.player()).racesnorigins$setCanGlide(payload.canGlide())));
+        registrar.playToClient(ClientboundSyncDietPayload.TYPE, ClientboundSyncDietPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() ->
+                        ((DietHolder) context.player()).racesnorigins$setDietRestriction(payload.restriction())));
     }
 
     public static void sendTraitList(ServerPlayer player) {
@@ -40,5 +46,9 @@ public final class NeoForgeNetworking {
 
     public static void syncCanGlide(ServerPlayer player, boolean canGlide) {
         PacketDistributor.sendToPlayer(player, new ClientboundSyncGlideFlagPayload(canGlide));
+    }
+
+    public static void syncDiet(ServerPlayer player, Optional<String> restriction) {
+        PacketDistributor.sendToPlayer(player, new ClientboundSyncDietPayload(restriction));
     }
 }

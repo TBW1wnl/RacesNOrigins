@@ -7,7 +7,9 @@
     "MixinEntityFireImmune",
     "MixinLivingEntityEffectImmunity",
     "MixinLivingEntityGlide",
-    "MixinLivingEntityAmphibious"
+    "MixinLivingEntityAmphibious",
+    "MixinLivingEntityDiet",
+    "MixinFoodPropertiesOnConsume"
   ],
   "client": [
     "MixinMinecraft"
