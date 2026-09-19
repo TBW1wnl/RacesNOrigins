@@ -1,6 +1,7 @@
 package com.tbw1wnl.racesnorigins.network;
 
 import com.tbw1wnl.racesnorigins.client.RaceClassSelectionScreen;
+import com.tbw1wnl.racesnorigins.modifier.GlideHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
@@ -24,6 +25,9 @@ public final class NeoForgeNetworking {
                 }));
         registrar.playToServer(ServerboundSelectTraitsPayload.TYPE, ServerboundSelectTraitsPayload.STREAM_CODEC,
                 (payload, context) -> context.enqueueWork(() -> PayloadHandlers.handleSelect((ServerPlayer) context.player(), payload)));
+        registrar.playToClient(ClientboundSyncGlideFlagPayload.TYPE, ClientboundSyncGlideFlagPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() ->
+                        ((GlideHolder) context.player()).racesnorigins$setCanGlide(payload.canGlide())));
     }
 
     public static void sendTraitList(ServerPlayer player) {
@@ -32,5 +36,9 @@ public final class NeoForgeNetworking {
 
     public static void sendTraitList(ServerPlayer player, boolean forceReselect) {
         PacketDistributor.sendToPlayer(player, PayloadHandlers.buildTraitList(player, forceReselect));
+    }
+
+    public static void syncCanGlide(ServerPlayer player, boolean canGlide) {
+        PacketDistributor.sendToPlayer(player, new ClientboundSyncGlideFlagPayload(canGlide));
     }
 }

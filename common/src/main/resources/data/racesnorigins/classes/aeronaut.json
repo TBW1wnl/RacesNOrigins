@@ -1,0 +1,8 @@
+{
+  "name": "Aeronaut",
+  "description": "Flies freely, like in creative mode.",
+  "icon": "minecraft:feather",
+  "modifiers": [
+    { "type": "racesnorigins:flight", "mode": "creative" }
+  ]
+}

@@ -10,4 +10,9 @@ public class NeoForgeServerNetworking implements IServerNetworking {
     public void sendTraitList(ServerPlayer player, boolean forceReselect) {
         NeoForgeNetworking.sendTraitList(player, forceReselect);
     }
+
+    @Override
+    public void syncCanGlide(ServerPlayer player, boolean canGlide) {
+        NeoForgeNetworking.syncCanGlide(player, canGlide);
+    }
 }

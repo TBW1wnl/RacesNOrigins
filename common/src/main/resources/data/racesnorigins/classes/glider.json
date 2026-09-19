@@ -1,0 +1,8 @@
+{
+  "name": "Glider",
+  "description": "Can glide through the air, elytra-style, without wearing one.",
+  "icon": "minecraft:phantom_membrane",
+  "modifiers": [
+    { "type": "racesnorigins:flight", "mode": "elytra" }
+  ]
+}

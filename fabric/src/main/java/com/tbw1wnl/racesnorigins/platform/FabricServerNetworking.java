@@ -10,4 +10,9 @@ public class FabricServerNetworking implements IServerNetworking {
     public void sendTraitList(ServerPlayer player, boolean forceReselect) {
         FabricNetworking.sendTraitList(player, forceReselect);
     }
+
+    @Override
+    public void syncCanGlide(ServerPlayer player, boolean canGlide) {
+        FabricNetworking.syncCanGlide(player, canGlide);
+    }
 }
