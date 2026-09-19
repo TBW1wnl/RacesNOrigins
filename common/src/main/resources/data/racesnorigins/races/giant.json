@@ -1,0 +1,10 @@
+{
+  "name": "Giant",
+  "description": "Towering and tough, but slow.",
+  "icon": "minecraft:iron_block",
+  "modifiers": [
+    { "type": "racesnorigins:scale", "value": 1.6 },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:max_health", "amount": 10.0, "operation": "add_value" },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:movement_speed", "amount": -0.03, "operation": "add_value" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Pyromancer",
+  "description": "Immune to fire and lava.",
+  "icon": "minecraft:blaze_powder",
+  "modifiers": [
+    { "type": "racesnorigins:fire_immunity" },
+    { "type": "racesnorigins:attribute_modifier", "attribute": "minecraft:attack_damage", "amount": 2.0, "operation": "add_value" }
+  ]
+}
