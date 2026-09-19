@@ -2,6 +2,7 @@ package com.tbw1wnl.racesnorigins;
 
 import com.tbw1wnl.racesnorigins.command.TraitCommands;
 import com.tbw1wnl.racesnorigins.platform.NeoForgePlayerDataStore;
+import com.tbw1wnl.racesnorigins.platform.Services;
 import com.tbw1wnl.racesnorigins.player.TraitApplier;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
@@ -18,6 +19,13 @@ public class RacesNOriginsMod {
         NeoForgePlayerDataStore.register(eventBus);
         CommonClass.init();
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) -> TraitCommands.register(event.getDispatcher()));
+        // AttachmentType.Builder#copyOnDeath() wasn't reliably carrying player_trait_data across
+        // respawn in testing, so copy explicitly too.
+        NeoForge.EVENT_BUS.addListener((PlayerEvent.Clone event) -> {
+            if (event.getEntity() instanceof ServerPlayer newPlayer && event.getOriginal() instanceof ServerPlayer oldPlayer) {
+                Services.PLAYER_DATA.set(newPlayer, Services.PLAYER_DATA.get(oldPlayer));
+            }
+        });
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) ->
                 TraitApplier.reapplyAll((ServerPlayer) event.getEntity()));
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerRespawnEvent event) ->
