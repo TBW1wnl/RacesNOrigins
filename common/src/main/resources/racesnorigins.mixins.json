@@ -9,7 +9,8 @@
     "MixinLivingEntityGlide",
     "MixinLivingEntityAmphibious",
     "MixinLivingEntityDiet",
-    "MixinFoodPropertiesOnConsume"
+    "MixinFoodPropertiesOnConsume",
+    "MixinLivingEntityHostileNeutrality"
   ],
   "client": [
     "MixinMinecraft"

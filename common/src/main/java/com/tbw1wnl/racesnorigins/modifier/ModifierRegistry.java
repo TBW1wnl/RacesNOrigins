@@ -9,6 +9,7 @@ import com.tbw1wnl.racesnorigins.modifier.types.DietModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.EffectImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.FireImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.FlightModifierTrait;
+import com.tbw1wnl.racesnorigins.modifier.types.HostileMobNeutralityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.PermanentEffectModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.ScaleModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.SpawnInNetherModifierTrait;
@@ -44,6 +45,7 @@ public final class ModifierRegistry {
         register(FlightModifierTrait.TYPE, FlightModifierTrait.CODEC);
         register(AmphibiousModifierTrait.TYPE, AmphibiousModifierTrait.CODEC);
         register(DietModifierTrait.TYPE, DietModifierTrait.CODEC);
+        register(HostileMobNeutralityModifierTrait.TYPE, HostileMobNeutralityModifierTrait.CODEC);
     }
 
     public static void register(Identifier id, MapCodec<? extends TraitModifier> codec) {

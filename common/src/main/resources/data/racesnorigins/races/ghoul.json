@@ -1,0 +1,8 @@
+{
+  "name": "Ghoul",
+  "description": "The undead don't see you as prey.",
+  "icon": "minecraft:rotten_flesh",
+  "modifiers": [
+    { "type": "racesnorigins:hostile_mob_neutrality", "mobs": ["minecraft:zombie", "minecraft:skeleton", "minecraft:husk", "minecraft:stray"] }
+  ]
+}
