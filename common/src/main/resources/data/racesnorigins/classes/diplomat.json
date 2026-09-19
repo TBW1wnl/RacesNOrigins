@@ -1,0 +1,8 @@
+{
+  "name": "Diplomat",
+  "description": "Trusted by villagers, earning better trade prices.",
+  "icon": "minecraft:emerald",
+  "modifiers": [
+    { "type": "racesnorigins:permanent_effect", "effect": "minecraft:hero_of_the_village", "amplifier": 0 }
+  ]
+}
