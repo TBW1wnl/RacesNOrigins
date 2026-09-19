@@ -20,13 +20,15 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * Debug/admin commands: {@code /racesnorigins apply|clear race|class <id>} directly
- * applies/removes a definition's modifiers on the executing player, bypassing
- * selection/persistence entirely. Useful to try out a race/class in-game before the full selection
- * flow (GUI, networking, persistence) exists.
- * <p>
- * {@code apply} does NOT remove a previously applied definition first (that diffing is the job of
- * the not-yet-built persistence layer) - use {@code clear} on the old one first when switching.
+ * Admin/debug commands under {@code /racesnorigins}:
+ * <ul>
+ *     <li>{@code set race|class <id>} - the real, persisted selection flow: removes the previous
+ *     selection's modifiers (if any), persists the new one, applies it (survives relog/respawn).</li>
+ *     <li>{@code apply}/{@code clear race|class <id>} - ephemeral debug tools that apply/remove a
+ *     definition's modifiers WITHOUT touching persisted state. Useful to eyeball a definition's
+ *     effect without committing to it; {@code apply} does not remove a previous ephemeral
+ *     application first, so use {@code clear} on the old one before switching.</li>
+ * </ul>
  */
 public final class TraitCommands {
 
@@ -35,6 +37,7 @@ public final class TraitCommands {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal(Constants.MOD_ID)
+                .then(slotCommand("set", TraitApplier::select))
                 .then(slotCommand("apply", TraitApplier::apply))
                 .then(slotCommand("clear", TraitApplier::remove)));
     }

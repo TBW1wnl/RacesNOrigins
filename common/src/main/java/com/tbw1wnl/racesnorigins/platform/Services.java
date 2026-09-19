@@ -2,6 +2,7 @@ package com.tbw1wnl.racesnorigins.platform;
 
 import com.tbw1wnl.racesnorigins.Constants;
 import com.tbw1wnl.racesnorigins.platform.services.IPlatformHelper;
+import com.tbw1wnl.racesnorigins.platform.services.IPlayerDataStore;
 import com.tbw1wnl.racesnorigins.platform.services.IReloadListenerRegistrar;
 
 import java.util.ServiceLoader;
@@ -17,6 +18,8 @@ public class Services {
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
 
     public static final IReloadListenerRegistrar RELOAD_LISTENERS = load(IReloadListenerRegistrar.class);
+
+    public static final IPlayerDataStore PLAYER_DATA = load(IPlayerDataStore.class);
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.
