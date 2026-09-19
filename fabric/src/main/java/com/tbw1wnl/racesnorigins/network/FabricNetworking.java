@@ -1,9 +1,6 @@
 package com.tbw1wnl.racesnorigins.network;
 
-import com.tbw1wnl.racesnorigins.Constants;
-import com.tbw1wnl.racesnorigins.network.ClientboundTraitListPayload;
-import com.tbw1wnl.racesnorigins.network.PayloadHandlers;
-import com.tbw1wnl.racesnorigins.network.ServerboundSelectTraitsPayload;
+import com.tbw1wnl.racesnorigins.client.RaceClassSelectionScreen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -24,8 +21,12 @@ public final class FabricNetworking {
 
     public static void registerClient() {
         ClientPlayNetworking.registerGlobalReceiver(ClientboundTraitListPayload.TYPE, (payload, context) ->
-                Constants.LOG.info("Received trait list: {} races, {} classes, hasChosen={}",
-                        payload.races().size(), payload.classes().size(), payload.hasChosen()));
+                context.client().execute(() -> {
+                    if (!payload.hasChosen()) {
+                        context.client().setScreenAndShow(new RaceClassSelectionScreen(payload.races(), payload.classes(),
+                                ClientPlayNetworking::send));
+                    }
+                }));
     }
 
     public static void sendTraitList(ServerPlayer player) {
