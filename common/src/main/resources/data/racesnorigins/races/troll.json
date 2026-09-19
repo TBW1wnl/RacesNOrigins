@@ -1,0 +1,9 @@
+{
+  "name": "Troll",
+  "description": "Always hungry, but never poisoned.",
+  "icon": "minecraft:rotten_flesh",
+  "modifiers": [
+    { "type": "racesnorigins:permanent_effect", "effect": "minecraft:hunger", "amplifier": 0 },
+    { "type": "racesnorigins:effect_immunity", "effect": "minecraft:poison" }
+  ]
+}

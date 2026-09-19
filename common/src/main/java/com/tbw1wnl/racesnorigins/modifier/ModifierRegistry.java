@@ -4,7 +4,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.tbw1wnl.racesnorigins.Constants;
 import com.tbw1wnl.racesnorigins.modifier.types.AttributeModifierTrait;
+import com.tbw1wnl.racesnorigins.modifier.types.EffectImmunityModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.FireImmunityModifierTrait;
+import com.tbw1wnl.racesnorigins.modifier.types.PermanentEffectModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.ScaleModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.SpawnInNetherModifierTrait;
 import com.tbw1wnl.racesnorigins.modifier.types.WaterBreathingModifierTrait;
@@ -32,6 +34,8 @@ public final class ModifierRegistry {
         register(WaterBreathingModifierTrait.TYPE, WaterBreathingModifierTrait.CODEC);
         register(FireImmunityModifierTrait.TYPE, FireImmunityModifierTrait.CODEC);
         register(SpawnInNetherModifierTrait.TYPE, SpawnInNetherModifierTrait.CODEC);
+        register(PermanentEffectModifierTrait.TYPE, PermanentEffectModifierTrait.CODEC);
+        register(EffectImmunityModifierTrait.TYPE, EffectImmunityModifierTrait.CODEC);
     }
 
     public static void register(Identifier id, MapCodec<? extends TraitModifier> codec) {
